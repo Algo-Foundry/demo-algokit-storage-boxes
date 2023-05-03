@@ -1,45 +1,50 @@
-# demo-algokit-storage-boxes
+# Box Storage Demo
+This is a demo on the various functions for storage boxes. The smart contract allows users to perform app calls related to storage boxes.
 
-This project has been generated using AlgoKit. See below for default getting started instructions.
+The box storage functions are 
 
-# Setup
+### create_box
+Creates a box with a name and specified size.
 
-### Initial setup
+### box_put
+Creates a box based on the input data size and puts the data inside.
 
-1. Clone this repository: `git clone {repository_url}`
-2. Install pre-requisites:
-   - If you have AlgoKit installed, run `algokit bootstrap poetry` within this folder;
-   - or:
-     - Install `Python` - [Link](https://www.python.org/downloads/): The minimum required version is `3.10`. Ensure you can execute `python -V` and get `3.10`+.
-     - Install `Poetry` - [Link](https://python-poetry.org/docs/#installation): The minimum required version is `1.2`. Ensure you can execute `poetry -V` and get `1.2`+.
-     - If you're not using PyCharm, then run `poetry install` in the root directory (this should set up `.venv` and also install all Python dependencies) - PyCharm will do this for you automatically on startup 🪄.
-3. Open the project and start debugging / developing via:
-   - VS Code
-     1. Open the repository root in VS Code
-     2. Install recommended extensions
-     3. Hit F5 (or whatever you have debug mapped to) and it should start running with breakpoint debugging.
-        (**NOTE:** The first time you run, VS Code may prompt you to select the Python Interpreter. Select python from the .venv path within this project)
-   - IDEA (e.g. PyCharm)
-     1. Open the repository root in the IDE
-     2. It should automatically detect it's a Poetry project and set up a Python interpreter and virtual environment.
-     3. Hit Shift+F9 (or whatever you have debug mapped to) and it should start running with breakpoint debugging.
-   - Other
-     1. Open the repository root in your text editor of choice
-     2. In a terminal run `poetry shell`
-     3. Run `python app.py` through your debugger of choice
+### box_replace
+Replaces the data in the box from the start position of the stored byte value.
 
-### Subsequently
+### box_read
+Reads the data from the box in the contract.
 
-1. If you update to the latest source code and there are new dependencies you will need to run `poetry install` again
-2. Follow step 3 above
+### box_extract
+Reads parts of the data from the box in the contract, if it is more than 4kb.
 
-# Tools
+### box_length
+Gets the size of the box
 
-This project makes use of Python to build Algorand smart contracts. The following tools are in use:
+### box_delete
+Deletes the box
 
-- [Poetry](https://python-poetry.org/): Python packaging and dependency management.- [Black](https://github.com/psf/black): A Python code formatter.
-- [Ruff](https://github.com/charliermarsh/ruff): An extremely fast Python linter.
+## Run the demo
 
-- [mypy](https://mypy-lang.org/): Static type checker.
+### Compile contracts
+1. run `python sc_approval.py`
+2. run `python sc_clearstate.py`
 
-It has also been configured to have a productive dev experience out of the box in VS Code, see the [.vscode](./.vscode) folder.
+Run the functions to submit the necessary app call transactions related to box storage,
+
+To reuse the deployed app, save the app ID in the `.env` folder after running the first script. 
+
+```
+node 00_deploy_box_contract.js
+node 01_create_empty_box.js
+node 02_create_box_with_data.js
+node 03_read_box_data.js 
+node 04_replace_box_data.js
+node 05_extract_box_data.js
+node 06_delete_box.js
+node 07_box_with_long_data.js
+```
+
+## References
+- [https://developer.algorand.org/articles/smart-contract-storage-boxes/](https://developer.algorand.org/articles/smart-contract-storage-boxes/)
+- [https://developer.algorand.org/docs/get-details/dapps/smart-contracts/apps/#box-details](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/apps/#box-details)
